@@ -1,3 +1,60 @@
 import '../styles/index.scss';
+import domtoimage from 'dom-to-image';
 
-console.log('webpack starterkit');
+const wrapper = document.querySelectorAll('[data-js-quote-wrapper]')[0];
+const quote = document.querySelectorAll('[data-js-quote]')[0];
+const author = document.querySelectorAll('[data-js-quote-author]')[0];
+const book = document.querySelectorAll('[data-js-quote-book]')[0];
+const portrait = document.querySelectorAll('[data-js-author-portrait]')[0];
+const portraitUploader = document.querySelectorAll('[data-js-portrait-uploader]')[0];
+
+window.download = () => {
+  if (!portrait.getAttribute("data-js-modified")) {
+    portrait.classList.add("hidden");
+  }
+
+  [quote, author, book].forEach((el) => {
+    if (el.value === '') {
+      el.classList.add("hidden");
+    }
+  });
+
+  domtoimage.toPng(wrapper).then(function (dataUrl) {
+    const link = document.createElement('a');
+    link.download = 'quote.jpeg';
+    link.href = dataUrl;
+    link.click();
+
+     [quote, author, book].forEach((el, i) => {
+       el.classList.remove("hidden");
+     });
+
+    if (!portrait.getAttribute("data-js-modified")) {
+      portrait.classList.remove("hidden");
+    }
+  }).catch(function (error) {
+    console.error('oops, something went wrong!', error);
+  });
+
+};
+
+window.upload = () => {
+  const input = portraitUploader;
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      portrait.src = e.target.result;
+      portrait.setAttribute("data-js-modified", true);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+};
+
+document.onreadystatechange = function () {
+  if (document.readyState == "interactive") {
+    quote.focus();
+  }
+};
