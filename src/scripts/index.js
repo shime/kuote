@@ -8,6 +8,15 @@ const book = document.querySelectorAll('[data-js-quote-book]')[0];
 const portrait = document.querySelectorAll('[data-js-author-portrait]')[0];
 const portraitUploader = document.querySelectorAll('[data-js-portrait-uploader]')[0];
 const scale = 750 / wrapper.offsetWidth;
+const uploadButtonWrapper = document.querySelectorAll('[data-js-upload-button-wrapper]')[0];
+const mobileNotice = document.querySelectorAll('[data-js-mobile-notice]')[0];
+
+const iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+
+if (iOS) {
+  mobileNotice.classList.remove("hidden");
+  uploadButtonWrapper.classList.add("hidden");
+}
 
 window.download = () => {
   if (!portrait.getAttribute("data-js-modified")) {

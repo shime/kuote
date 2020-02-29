@@ -15,7 +15,7 @@
 
     <div class="mt-12 relative flex justify-between items-start w-full z-20 self-center">
       <div class="flex items-start">
-        <div class="hidden md:inline-block upload-btn-wrapper">
+        <div data-js-upload-button-wrapper class="inline-block upload-btn-wrapper">
           <img data-js-author-portrait data-html2canvas-ignore class="self-start rounded-full w-16 h-16 mr-4" src='/public/user.svg' alt='' />
           <input type="file" name="myfile" data-js-portrait-uploader onchange="upload()" />
         </div>
@@ -32,7 +32,7 @@
     <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
     <span>Take Screenshot</span>
   </button>
-  <span class="md:hidden ml-8 text-xs text-gray-500">Image uploads are not supported on mobile browsers.</span>
+  <span data-js-mobile-notice class="hidden ml-8 text-xs text-gray-500">Image uploads are not supported on mobile browsers.</span>
 
   </div>
 
