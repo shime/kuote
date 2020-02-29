@@ -2,6 +2,9 @@
 
 Create beautiful Medium-like quotes, perfect for sharing on Twitter or Instagram.
 
+### Examples
+
+![](/munger.png)
 
 ### Installation
 
