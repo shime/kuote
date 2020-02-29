@@ -11,7 +11,7 @@
   <p class="px-8 font-serif text-gray-500 text-lg lg:w-1/2">Transform your textual quote into a beautiful image, perfect for sharing on Twitter or Instagram.</p>
 
   <div id="my-node" data-js-quote-wrapper class="bg-white p-8 max-w-lg">
-    <textarea data-js-quote class="font-hairline text-gray-800 w-full resize-none text-2xl mt-12 font-serif outline-none" placeholder="Quote" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
+    <textarea data-js-quote class="font-hairline text-gray-800 w-full resize-none text-2xl mt-12 font-serif outline-none" placeholder="Quote" oninput='adjustHeight(this)'></textarea>
 
     <div class="mt-12 relative flex justify-between items-start w-full z-20 self-center">
       <div class="flex items-start">
@@ -21,8 +21,8 @@
         </div>
 
         <div class="flex flex-col self-center flex-wrap w-4">
-          <textarea data-js-quote-author rows="1" class="resize-none text-xl no-underline font-semibold self-start outline-none" placeholder="Author" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
-          <textarea data-js-quote-book rows="1" class="h-6 resize-none self-start outline-none text-gray-500" placeholder="Book" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
+          <textarea data-js-quote-author rows="1" class="resize-none text-xl no-underline font-semibold self-start outline-none" placeholder="Author" oninput='adjustHeight(this)'></textarea>
+          <textarea data-js-quote-book rows="1" class="h-6 resize-none self-start outline-none text-gray-500" placeholder="Book" oninput='adjustHeight(this)'></textarea>
         </div>
       </div>
     </div>

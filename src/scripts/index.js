@@ -7,6 +7,7 @@ const author = document.querySelectorAll('[data-js-quote-author]')[0];
 const book = document.querySelectorAll('[data-js-quote-book]')[0];
 const portrait = document.querySelectorAll('[data-js-author-portrait]')[0];
 const portraitUploader = document.querySelectorAll('[data-js-portrait-uploader]')[0];
+const scale = 750 / wrapper.offsetWidth;
 
 window.download = () => {
   if (!portrait.getAttribute("data-js-modified")) {
@@ -19,9 +20,17 @@ window.download = () => {
     }
   });
 
-  domtoimage.toPng(wrapper).then(function (dataUrl) {
+  domtoimage.toPng(wrapper, {
+    height: wrapper.offsetHeight * scale,
+    width: wrapper.offsetWidth * scale,
+    style: {
+      transform: "scale(" + scale + ")",
+      transformOrigin: "top left",
+      width: wrapper.offsetWidth + "px",
+      height: wrapper.offsetHeight + "px"
+    }}).then((dataUrl) => {
     const link = document.createElement('a');
-    link.download = 'quote.jpeg';
+    link.download = 'quote.png';
     link.href = dataUrl;
     link.click();
 
@@ -53,8 +62,14 @@ window.upload = () => {
   }
 };
 
+window.adjustHeight = (element) => {
+  element.style.height = "";
+  element.style.height = element.scrollHeight + "px";
+};
+
 document.onreadystatechange = function () {
   if (document.readyState == "interactive") {
     quote.focus();
   }
 };
+
