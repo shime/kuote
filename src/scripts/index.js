@@ -1,5 +1,6 @@
 import '../styles/index.scss';
 import domtoimage from 'dom-to-image';
+import quotes from './../data/quotes.json';
 
 const wrapper = document.querySelectorAll('[data-js-quote-wrapper]')[0];
 const quote = document.querySelectorAll('[data-js-quote]')[0];
@@ -21,6 +22,7 @@ if (iOS) {
 window.download = () => {
   if (!portrait.getAttribute("data-js-modified")) {
     portrait.classList.add("hidden");
+    uploadButtonWrapper.classList.add("hidden");
   }
 
   [quote, author, book].forEach((el) => {
@@ -49,6 +51,7 @@ window.download = () => {
 
     if (!portrait.getAttribute("data-js-modified")) {
       portrait.classList.remove("hidden");
+    uploadButtonWrapper.classList.remove("hidden");
     }
   }).catch(function (error) {
     console.error('oops, something went wrong!', error);
@@ -74,6 +77,16 @@ window.upload = () => {
 window.adjustHeight = (element) => {
   element.style.height = "";
   element.style.height = element.scrollHeight + "px";
+};
+
+window.generate = () => {
+  const randomQuote = quotes[Math.floor(Math.random()*quotes.length)];
+
+  author.value = randomQuote.author;
+  book.value = randomQuote.book ? randomQuote.book : "";
+  quote.value = randomQuote.quote;
+
+  [author, book, quote].forEach((el) => adjustHeight(el));
 };
 
 document.onreadystatechange = function () {
