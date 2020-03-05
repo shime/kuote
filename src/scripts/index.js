@@ -11,6 +11,8 @@ const portraitUploader = document.querySelectorAll('[data-js-portrait-uploader]'
 const scale = 750 / wrapper.offsetWidth;
 const uploadButtonWrapper = document.querySelectorAll('[data-js-upload-button-wrapper]')[0];
 const mobileNotice = document.querySelectorAll('[data-js-mobile-notice]')[0];
+const toggleLabel = document.querySelectorAll('[data-js-toggle-label]')[0];
+const kuoteAuthor = document.querySelectorAll('[data-js-kuote-author]')[0];
 
 const iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 
@@ -89,9 +91,43 @@ window.generate = () => {
   [author, book, quote].forEach((el) => adjustHeight(el));
 };
 
+window.updateFont = (select) => {
+  const value = select.options[select.selectedIndex].value.toLowerCase()
+
+  document.body.classList.remove("font-serif")
+  document.body.classList.remove("font-sans")
+  document.body.classList.remove("font-mono")
+
+  switch (value){
+    case "sans":
+      document.body.classList.add("font-sans")
+      break
+    case "serif":
+      document.body.classList.add("font-serif")
+      break
+    case "mono":
+      document.body.classList.add("font-mono")
+      break
+
+  }
+}
+
+window.toggleDarkMode = () => {
+  document.body.classList.toggle("bg-gray-900")
+  document.body.classList.toggle("text-white")
+  wrapper.classList.toggle("bg-gray-900")
+  document.querySelectorAll("textarea").forEach((el) => {
+    el.classList.toggle("bg-gray-900")
+  })
+  quote.classList.toggle("text-gray-800")
+  quote.classList.toggle("text-white")
+  toggleLabel.classList.toggle("text-gray-700")
+  toggleLabel.classList.toggle("text-gray-500")
+  kuoteAuthor.classList.toggle("border")
+}
+
 document.onreadystatechange = function () {
   if (document.readyState == "interactive") {
     quote.focus();
   }
 };
-
