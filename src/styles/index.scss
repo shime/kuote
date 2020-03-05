@@ -30,6 +30,10 @@ img {
   object-fit: cover;
 }
 
+textarea {
+  overflow: hidden;
+}
+
 /* CHECKBOX TOGGLE SWITCH */
 .form-switch {
     @apply relative select-none w-12 mr-2 leading-normal;
