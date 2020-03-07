@@ -33,6 +33,14 @@ window.download = () => {
     }
   });
 
+  const getScreenshotFilename = (authorValue, quoteValue) => {
+    const safeFilenameRegexp = /[^a-z0-9]/gi;
+
+    const authorPart = authorValue.replace(safeFilenameRegexp, '_');
+    const quotePart = quoteValue.replace(safeFilenameRegexp, '_');
+    return `quote-${authorPart}-${quotePart}`.slice(0, 50);
+  };
+
   domtoimage.toPng(wrapper, {
     height: wrapper.offsetHeight * scale,
     width: wrapper.offsetWidth * scale,
@@ -43,7 +51,7 @@ window.download = () => {
       height: wrapper.offsetHeight + "px"
     }}).then((dataUrl) => {
     const link = document.createElement('a');
-    link.download = 'quote.png';
+    link.download = `${getScreenshotFilename(author.value || '', quote.value || '')}.png`;
     link.href = dataUrl;
     link.click();
 
