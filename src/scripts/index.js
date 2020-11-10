@@ -100,39 +100,49 @@ window.generate = () => {
 };
 
 window.updateFont = (select) => {
-  const value = select.options[select.selectedIndex].value.toLowerCase()
+  const value = select.options[select.selectedIndex].value.toLowerCase();
 
-  document.body.classList.remove("font-serif")
-  document.body.classList.remove("font-sans")
-  document.body.classList.remove("font-mono")
+  document.body.classList.remove("font-serif");
+  document.body.classList.remove("font-sans");
+  document.body.classList.remove("font-mono");
 
   switch (value){
     case "sans":
-      document.body.classList.add("font-sans")
-      break
+      document.body.classList.add("font-sans");
+      break;
     case "serif":
-      document.body.classList.add("font-serif")
-      break
+      document.body.classList.add("font-serif");
+      break;
     case "mono":
-      document.body.classList.add("font-mono")
-      break
+      document.body.classList.add("font-mono");
+      break;
 
   }
-}
+};
 
 window.toggleDarkMode = () => {
-  document.body.classList.toggle("bg-gray-900")
-  document.body.classList.toggle("text-white")
-  wrapper.classList.toggle("bg-gray-900")
+  document.body.classList.toggle("bg-gray-900");
+  document.body.classList.toggle("text-white");
+  wrapper.classList.toggle("bg-gray-900");
   document.querySelectorAll("textarea").forEach((el) => {
-    el.classList.toggle("bg-gray-900")
+    el.classList.toggle("bg-gray-900");
+  });
+  quote.classList.toggle("text-gray-800");
+  quote.classList.toggle("text-white");
+  toggleLabel.classList.toggle("text-gray-700");
+  toggleLabel.classList.toggle("text-gray-500");
+  kuoteAuthor.classList.toggle("border");
+  document.querySelectorAll(".text-gray-700").forEach((el) => {
+    el.classList.toggle("text-gray-700");
+    el.classList.toggle("text-gray-500");
   })
-  quote.classList.toggle("text-gray-800")
-  quote.classList.toggle("text-white")
-  toggleLabel.classList.toggle("text-gray-700")
-  toggleLabel.classList.toggle("text-gray-500")
-  kuoteAuthor.classList.toggle("border")
-}
+};
+
+window.toggleMoreOptions = () => {
+  const wrapper = document.querySelectorAll("[data-js-more-options-wrapper]")[0];
+
+  wrapper.classList.toggle("hidden");
+};
 
 document.onreadystatechange = function () {
   if (document.readyState == "interactive") {
