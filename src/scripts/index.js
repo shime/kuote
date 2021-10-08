@@ -131,11 +131,10 @@ window.toggleDarkMode = () => {
   quote.classList.toggle("text-white");
   toggleLabel.classList.toggle("text-gray-700");
   toggleLabel.classList.toggle("text-gray-500");
-  kuoteAuthor.classList.toggle("border");
   document.querySelectorAll(".text-gray-700").forEach((el) => {
     el.classList.toggle("text-gray-700");
     el.classList.toggle("text-gray-500");
-  })
+  });
 };
 
 window.toggleMoreOptions = () => {
